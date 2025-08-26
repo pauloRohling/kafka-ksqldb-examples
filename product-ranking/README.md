@@ -1,8 +1,6 @@
 # Product Ranking Example
 
-This project demonstrates how to use ksqlDB to process events in real time and calculate the ranking of best-selling
-products. For this example, we will create a Stream from an `orders` topic, a Table from a `products` topic, enrich
-orders with product names, and aggregate sales per product in a 1-minute window.
+This project demonstrates how to use ksqlDB to process events in real time and calculate the ranking of best-selling products. For this example, we will create a Stream from an `orders` topic, a Table from a `products` topic, enrich orders with product names, and aggregate sales per product in a 1-minute window.
 
 ## Prerequisites
 
@@ -20,8 +18,7 @@ docker-compose up -d
 
 ## Creating the necessary topics
 
-This project requires two Kafka topics. You can create them
-using the following CLI commands:
+This project requires two Kafka topics. You can create them using the following CLI commands:
 
 > ⚠️ Make sure your Kafka broker is running on localhost:9092. Adjust the --bootstrap-server parameter if needed.
 
@@ -47,8 +44,7 @@ To define the orders stream and the products table, you need to first access the
 docker exec -it ksqldb-cli ksql http://ksqldb-server:8088
 ```
 
-You can use the [ranking.sql](ranking.sql) file to create the necessary streams and tables. Below is a summary of what
-will be created:
+You can use the [script.sql](script.sql) file to create the necessary streams and tables. Below is a summary of what will be created:
 
 - **Orders Stream**: represents customer orders, containing order_id, product_id, and quantity.
 - **Products Table**: contains product information with product_id as the primary key.
@@ -85,7 +81,8 @@ To see the product ranking in real time, run:
 
 ```sql
 SELECT *
-FROM product_ranking EMIT CHANGES;
+FROM product_ranking
+EMIT CHANGES;
 ```
 
 The output will continuously display the total quantity sold per product, updated every minute.

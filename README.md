@@ -8,3 +8,5 @@ joins, aggregations, and windowed computations.
 
 - [Product Sales Ranking](product-ranking/README.md): An example that demonstrates how to use streams, tables, joins,
   and windowed aggregations to calculate the ranking of best-selling products.
+- [Fraud Detection](fraud-detection/README.md): An example that demonstrates how to detect suspicious financial
+  transactions in real time using filters, joins, and windowed aggregations.

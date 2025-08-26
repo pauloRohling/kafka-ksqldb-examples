@@ -1,1 +1,3 @@
 .idea/**
+fraud-detection/data/confluentinc-kafka-connect-datagen-0.6.7/**
+!fraud-detection/data/confluentinc-kafka-connect-datagen-0.6.7/.gitkeep

@@ -1,0 +1,55 @@
+### Create customers source connector
+POST http://localhost:8083/connectors
+Content-Type: application/json
+Accept: application/json
+
+{
+  "name": "customer-source-connector",
+  "config": {
+    "connector.class": "io.confluent.kafka.connect.datagen.DatagenConnector",
+    "tasks.max": "1",
+    "key.converter": "org.apache.kafka.connect.converters.IntegerConverter",
+    "value.converter": "io.confluent.connect.avro.AvroConverter",
+    "value.converter.schema.registry.url": "http://schema-registry:8081",
+    "kafka.topic": "customers",
+    "max.interval": 1000,
+    "schema.filename": "/data/schemas/customers.avsc",
+    "schema.keyfield": "id"
+  }
+}
+
+### Get customer source connector status
+GET http://localhost:8083/connectors/customer-source-connector/status
+Accept: application/json
+
+### Create transaction source connector
+POST http://localhost:8083/connectors
+Content-Type: application/json
+Accept: application/json
+
+{
+  "name": "transaction-source-connector",
+  "config": {
+    "connector.class": "io.confluent.kafka.connect.datagen.DatagenConnector",
+    "tasks.max": "1",
+    "key.converter": "org.apache.kafka.connect.storage.StringConverter",
+    "value.converter": "io.confluent.connect.avro.AvroConverter",
+    "value.converter.schema.registry.url": "http://schema-registry:8081",
+    "kafka.topic": "transactions",
+    "max.interval": 200,
+    "schema.filename": "/data/schemas/transactions.avsc",
+    "schema.keyfield": "id"
+  }
+}
+
+### Get transaction source connector status
+GET http://localhost:8083/connectors/transaction-source-connector/status
+Accept: application/json
+
+### Restart transaction source connector
+POST http://localhost:8083/connectors/transaction-source-connector/restart
+Accept: application/json
+
+### Delete transaction source connector
+DELETE http://localhost:8083/connectors/transaction-source-connector
+Accept: application/json
